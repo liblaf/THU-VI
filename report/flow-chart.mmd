@@ -1,0 +1,14 @@
+flowchart LR
+  D[Landsat & Sentinel-2]
+  A[AOI]
+  IC[Image Collection]
+  R{{Remove Clouds}}
+  VI{{Calculate Vegetation Index}}
+  M[Results on Map]
+  C[Vegetation Index Time Series]
+  D  --> IC
+  A  --> IC
+  IC --> R
+  R  --> VI
+  VI --> M
+  VI --> C

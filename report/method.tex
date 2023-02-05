@@ -1,0 +1,42 @@
+% !TeX root = main.tex
+
+\section{研究方法}
+
+本文使用来自卫星的遥感影像数据, 以植被指数为标准衡量校园绿化状况, 分析清华校园绿化在时间和空间维度上的分布情况.
+
+\subsection{数据来源}
+
+\subsubsection{清华大学校园边界}
+
+清华大学校园的 AOI 边界数据来源于高德地图公开的 API.
+首先在网页版高德地图内搜索 ``清华大学'', 并选中搜索结果, 这时可以发现链接已经跳转至 \url{https://amap.com/place/B000A7BD6C}.
+其中 \verb|B000A7BD6C| 即为 ``清华大学'' 对应的 ID.
+查询 API \url{https://amap.com/detail/get/detail?id=B000A7BD6C}, 在 \verb|data > spec > mining_shape > shape| 条目下可以查询得到清华大学对应的 AOI 边界多边形各点的经纬度坐标. (详见 \cref{app:aoi})
+
+\subsubsection{卫星遥感影像数据}
+
+本文使用来自 Landsat 和 Sentinel-2 的遥感影像数据.\cite{claverie_harmonized_2018}
+一方面, 这些数据能够覆盖较长的时间范围, 且精度满足初步分析的需求.
+另一方面, 这部分数据是免费公开的, 易于获取.
+
+\subsection{植被指数}
+
+在遥感应用领域, 植被指数广泛应用于植被覆盖度和生长势的定性和定量评价.
+由于植被光谱受到植被本身、光照、土壤和水分等复杂环境的综合影响, 并且受到不稳定的大气变化影响, 因此没有一个稳定普遍的值, 其研究往往表现出复杂的结果.\cite{__1998}
+
+前人的工作中提出了很多评估地表植被状况的方法\cite{bannari_review_1995}, 本文选取其中的一些指标作为样例进行计算.
+根据研究目的的不同, 其余的指标也可以通过类似的方法进行计算和求解.
+
+\subsubsection{归一化植被指数 (NDVI)}
+
+归一化植被指数 (Normalized Difference Vegetation Index, NDVI) 是常用的一种植被指数, 其计算方法如下：
+\begin{equation}
+  \mathrm{NDVI} = \frac{\mathrm{NIR} - \mathrm{Red}}{\mathrm{NIR} + \mathrm{Red}}
+\end{equation}
+其中 $\mathrm{Red}$ 和 $\mathrm{NIR}$ 分别表示红色 (可见光) 和近红外区域的光谱反射率.
+
+\subsection{计算平台}
+
+Google Earth Engine (GEE) 是一个方便快捷的卫星影像数据处理平台, 相比与 ENVI 等传统工具, 在线的 GEE 不受限于本地物理机的资源限制, 能够快速处理大量数据.
+同时, GEE 提供免费的服务以及海量的公开数据集.
+因此本文基于 GEE 平台进行开发数据处理方法.

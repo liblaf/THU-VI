@@ -1,0 +1,42 @@
+\documentclass[chinese]{iarticle}
+\usepackage[sorting=none]{biblatex}
+\usepackage{icode}
+
+\addbibresource{references.bib}
+
+\course{Fundamentals of Geomatics}
+\date{2022 年 12 月 14 日}
+\title{清华大学校园绿化遥感监测与分析}
+
+\begin{document}
+
+\begin{abstract}
+  监测与分析校园绿化对于建设良好的生态文明具有重要意义, 使用传统手段对校园绿化进行监测存在诸多不足之处.
+  本文使用来自 Landsat 和 Sentinel-2 的卫星遥感影像数据, 通过基于 GEE 平台处理影像数据、计算植被指数, 对 1984 年 -- 2022 年间清华大学校园绿化在时间和空间维度上的分布进行了初步分析.
+  结果显示, 植被指数随季节的变化与大多数植被随季节变化的生物学规律相符, 植被指数的空间分布与校园规划基本吻合, 这说明了选取植被指数为衡量校园绿化状况指标的合理性.
+
+  完整的项目开源于 \href{https://github.com/liblaf/THU-VI}{GitHub}: \url{https://github.com/liblaf/THU-VI}.
+\end{abstract}
+
+\tableofcontents
+
+\input{introduction.tex}
+\input{method.tex}
+\input{implementation.tex}
+\input{analysis.tex}
+\input{conclusion.tex}
+\printbibliography
+
+\appendix
+
+\section{高德地图 API 详细结果}
+\label{app:aoi}
+
+\inputminted[breaklines, breakanywhere]{json}{../data/aoi.json}
+
+\section{GEE 源码}
+\label{app:code}
+
+\inputminted[breaklines, breakanywhere]{js}{../src/index.js}
+
+\end{document}
